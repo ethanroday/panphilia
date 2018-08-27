@@ -3,11 +3,11 @@ export interface Ingredient {
   name: string;
 }
 
-export type Ingredients = {
+export interface Ingredients {
   [id: string]: Ingredient;
 }
 
-type IngredientsState = {
+interface IngredientsState {
   ingredients: Ingredients;
 }
 

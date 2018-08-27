@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RecipeState } from '../../../../../store/recipes/state';
 import Ingredient from '../ingredient';
 
-type RecipeProps = {
+interface RecipeProps {
   recipe: RecipeState;
 }
 
@@ -11,7 +11,7 @@ const Recipe: React.StatelessComponent<RecipeProps> = (props) =>
     <ul>
       {
         props.recipe.ingredients.map(ingredient => 
-          <li>
+          <li key={ingredient.ingredient.id}>
             <Ingredient {...ingredient} />
           </li>
         )
@@ -19,8 +19,8 @@ const Recipe: React.StatelessComponent<RecipeProps> = (props) =>
     </ul>
     <ol>
       {
-        props.recipe.steps.map(step =>
-          <li>{step.text}</li>
+        props.recipe.steps.map((step, index) =>
+          <li key={index}>{step.text}</li>
         )
       }
     </ol>

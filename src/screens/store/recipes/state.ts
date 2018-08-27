@@ -33,7 +33,7 @@ export interface Recipes {
   [id: string]: RecipeState;
 }
 
-type RecipesState = {
+interface RecipesState {
   recipes: Recipes;
 }
 

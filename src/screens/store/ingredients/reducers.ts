@@ -1,4 +1,4 @@
-import { Reducer, combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 
 import * as actions from './actions';
