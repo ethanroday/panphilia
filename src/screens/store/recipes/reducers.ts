@@ -12,6 +12,8 @@ const recipesReducer: Reducer<Recipes, Action> = (state = {}, action) => {
         ...state,
         [action.payload.id]: action.payload
       }
+    default:
+      return state;
   }
 }
 

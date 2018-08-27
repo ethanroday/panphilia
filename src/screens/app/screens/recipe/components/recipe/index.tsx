@@ -8,6 +8,7 @@ interface RecipeProps {
 
 const Recipe: React.StatelessComponent<RecipeProps> = (props) =>
   <div>
+    <h2>{props.recipe.title}</h2>
     <ul>
       {
         props.recipe.ingredients.map(ingredient => 

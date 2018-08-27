@@ -12,6 +12,8 @@ const ingredientsReducer: Reducer<Ingredients, Action> = (state = {}, action) =>
         ...state,
         [action.payload.id]: action.payload
       }
+    default:
+      return state;
   }
 }
 
