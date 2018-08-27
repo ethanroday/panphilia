@@ -1,24 +1,20 @@
-import { Reducer } from 'redux';
+import { Reducer, combineReducers } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 
 import * as actions from './actions';
-import IngredientsState from './state';
+import IngredientsState, { Ingredients } from './state';
 export type Action = ActionType<typeof actions>;
 
-const ingredientsInitialState = {
-  ingredients: {}
-};
-
-const ingredientsReducer: Reducer<IngredientsState, Action> = (state = ingredientsInitialState, action) => {
+const ingredientsReducer: Reducer<Ingredients, Action> = (state = {}, action) => {
   switch(action.type) {
     case getType(actions.addIngredient):
       return {
-        ingredients: {
-          ...state.ingredients,
-          [action.payload.id]: action.payload
-        }
+        ...state,
+        [action.payload.id]: action.payload
       }
   }
 }
 
-export default ingredientsReducer;
+export default combineReducers<IngredientsState, Action>({
+  ingredients: ingredientsReducer
+});
