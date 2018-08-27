@@ -1,27 +1,27 @@
 import { Ingredient } from "../ingredients/state";
 
-interface Amount {
+export interface Amount {
   quantity: number;
   unit: string;
 }
 
-interface RecipeIngredient {
+export interface RecipeIngredient {
   amount: Amount;
   ingredient: Ingredient;
   note?: string;
 }
 
-interface RecipeStep {
+export interface RecipeStep {
   text: string;
 }
 
-interface RecipeMetadata {
+export interface RecipeMetadata {
   yield?: Amount;
   activeTimeMinutes?: number;
   totalTimeMinutes?: number;
 }
 
-interface Recipe {
+export interface RecipeState {
   id: string;
   title: string;
   ingredients: RecipeIngredient[];
@@ -30,7 +30,7 @@ interface Recipe {
 }
 
 export interface Recipes {
-  [id: string]: Recipe;
+  [id: string]: RecipeState;
 }
 
 type RecipesState = {
