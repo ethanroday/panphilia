@@ -17,6 +17,7 @@ export interface RecipeStep {
 }
 
 export interface RecipeMetadata {
+  title: string;
   yield?: Amount;
   activeTimeMinutes?: number;
   totalTimeMinutes?: number;
@@ -25,7 +26,6 @@ export interface RecipeMetadata {
 
 export interface RecipeState {
   id: string;
-  title: string;
   ingredients: RecipeIngredient[];
   steps: RecipeStep[];
   metadata: RecipeMetadata;

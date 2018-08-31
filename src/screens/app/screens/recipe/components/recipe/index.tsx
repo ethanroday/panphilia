@@ -11,7 +11,7 @@ interface RecipeProps {
 
 const Recipe: React.StatelessComponent<RecipeProps> = ({ recipe }) =>
   <div>
-    <h2>{recipe.title}</h2>
+    <h2>{recipe.metadata.title}</h2>
     <IngredientList ingredients={recipe.ingredients} />
     <RecipeSteps steps={recipe.steps} />
   </div>

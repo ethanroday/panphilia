@@ -9,6 +9,7 @@ import { addIngredient } from '../store/ingredients/actions';
 import { addRecipe } from '../store/recipes/actions';
 import { RecipeState } from '../store/recipes/state';
 
+import ContentsScreen from './screens/contents';
 import RecipeScreen from './screens/recipe';
 
 import './style.css';
@@ -27,13 +28,12 @@ const recipes: RecipeState[] = [
       { ingredientId: 'cinnamon', amount: { quantity: 0.25, unit: 'tsp' } }
     ],
     metadata: {
-  
+      title: 'My Fav Recipe'
     },
     steps: [
       { text: "Combine all ingredients." },
       { text: "Stir." }
-    ],
-    title: 'My Fav Recipe'
+    ]
   },
   {
     id: 'blah2',
@@ -42,13 +42,12 @@ const recipes: RecipeState[] = [
       { ingredientId: 'pepper', amount: { quantity: 0.25, unit: 'tsp' } }
     ],
     metadata: {
-  
+      title: 'Another Great One'
     },
     steps: [
       { text: "Combine all ingredients." },
       { text: "Stir vigorously." }
-    ],
-    title: 'Another Great One'
+    ]
   }
 ];
 
@@ -73,9 +72,12 @@ class App extends React.Component {
             <header className="App-header">
               <h1 className="App-title">Panphilia</h1>
             </header>
-            <Switch>
-              <Route path="/recipe/:id" component={RenderRecipeScreen}/>
-            </Switch>
+            <div className="content-container">
+              <Switch>
+                <Route path="/" exact={true} component={ContentsScreen} />
+                <Route path="/recipe/:id" component={RenderRecipeScreen} />
+              </Switch>
+            </div>
           </div>
         </BrowserRouter>
       </Provider>
