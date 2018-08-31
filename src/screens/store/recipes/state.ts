@@ -1,5 +1,3 @@
-import { Ingredient } from "../ingredients/state";
-
 export interface Amount {
   quantity: number;
   unit: string;
@@ -7,10 +5,13 @@ export interface Amount {
 
 export interface RecipeIngredient {
   amount: Amount;
-  ingredient: Ingredient;
+  ingredientId: string;
   note?: string;
 }
 
+export interface ResolvedRecipeIngredient extends RecipeIngredient {
+  ingredientName: string;
+}
 export interface RecipeStep {
   text: string;
 }
@@ -19,6 +20,7 @@ export interface RecipeMetadata {
   yield?: Amount;
   activeTimeMinutes?: number;
   totalTimeMinutes?: number;
+  notes?: string[];
 }
 
 export interface RecipeState {
@@ -27,6 +29,10 @@ export interface RecipeState {
   ingredients: RecipeIngredient[];
   steps: RecipeStep[];
   metadata: RecipeMetadata;
+}
+
+export interface ResolvedRecipeState extends RecipeState {
+  ingredients: ResolvedRecipeIngredient[];
 }
 
 export interface Recipes {

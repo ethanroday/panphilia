@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import initializeStore from '../store/initializeStore';
+
+import { addIngredient } from '../store/ingredients/actions';
 import { addRecipe } from '../store/recipes/actions';
 import { RecipeState } from '../store/recipes/state';
 
@@ -11,42 +13,54 @@ import RecipeScreen from './screens/recipe';
 
 import './style.css';
 
-const recipe: RecipeState = {
-  id: 'blah',
-  ingredients: [
-    { ingredient: { id: 'blah', name: 'nutmeg' }, amount: { quantity: 0.25, unit: 'tsp' } },
-    { ingredient: { id: 'blah', name: 'cinnamon' }, amount: { quantity: 0.25, unit: 'tsp' } }
-  ],
-  metadata: {
+const ingredients = [
+  { id: 'nutmeg', name: 'nutmeg' },
+  { id: 'cinnamon', name: 'cinnamon' },
+  { id: 'pepper', name: 'pepper' }
+];
 
+const recipes: RecipeState[] = [
+  {
+    id: 'blah',
+    ingredients: [
+      { ingredientId: 'nutmeg', amount: { quantity: 0.25, unit: 'tsp' } },
+      { ingredientId: 'cinnamon', amount: { quantity: 0.25, unit: 'tsp' } }
+    ],
+    metadata: {
+  
+    },
+    steps: [
+      { text: "Combine all ingredients." },
+      { text: "Stir." }
+    ],
+    title: 'My Fav Recipe'
   },
-  steps: [
-    { text: "Combine all ingredients." },
-    { text: "Stir." }
-  ],
-  title: 'My Fav Recipe'
-}
-
-const recipe2: RecipeState = {
-  id: 'blah2',
-  ingredients: [
-    { ingredient: { id: 'blah', name: 'nutmeg' }, amount: { quantity: 0.25, unit: 'tsp' } },
-    { ingredient: { id: 'blah', name: 'pepper' }, amount: { quantity: 0.25, unit: 'tsp' } }
-  ],
-  metadata: {
-
-  },
-  steps: [
-    { text: "Combine all ingredients." },
-    { text: "Stir vigorously." }
-  ],
-  title: 'Another Great One'
-}
+  {
+    id: 'blah2',
+    ingredients: [
+      { ingredientId: 'nutmeg', amount: { quantity: 0.25, unit: 'tsp' } },
+      { ingredientId: 'pepper', amount: { quantity: 0.25, unit: 'tsp' } }
+    ],
+    metadata: {
+  
+    },
+    steps: [
+      { text: "Combine all ingredients." },
+      { text: "Stir vigorously." }
+    ],
+    title: 'Another Great One'
+  }
+];
 
 const store = initializeStore();
 
-store.dispatch(addRecipe(recipe.id, recipe));
-store.dispatch(addRecipe(recipe2.id, recipe2));
+recipes.forEach(recipe => {
+  store.dispatch(addRecipe(recipe.id, recipe));
+});
+
+ingredients.forEach(ingredient => {
+  store.dispatch(addIngredient(ingredient.id, ingredient.name));
+});
 
 const RenderRecipeScreen = (props: any) => <RecipeScreen recipeId={props.match.params.id} />
 

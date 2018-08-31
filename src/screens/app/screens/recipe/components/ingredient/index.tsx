@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { RecipeIngredient } from '../../../../../store/recipes/state';
 
-const Ingredient: React.StatelessComponent<RecipeIngredient> = (props) =>
+import { ResolvedRecipeIngredient } from '../../../../../store/recipes/state';
+
+const Ingredient: React.StatelessComponent<ResolvedRecipeIngredient> = (props) =>
   <div>
-    <span><i>{props.amount.quantity} {props.amount.unit}</i> {props.ingredient.name}</span>
+    <span><i>{props.amount.quantity} {props.amount.unit}</i> {props.ingredientName}</span>
   </div>
 
 export default Ingredient;

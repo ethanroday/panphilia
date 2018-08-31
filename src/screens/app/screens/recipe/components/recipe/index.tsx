@@ -1,30 +1,19 @@
 import * as React from 'react';
-import { RecipeState } from '../../../../../store/recipes/state';
-import Ingredient from '../ingredient';
+
+import IngredientList from '../ingredient-list';
+import RecipeSteps from '../recipe-steps';
+
+import { ResolvedRecipeState } from '../../../../../store/recipes/state';
 
 interface RecipeProps {
-  recipe: RecipeState;
+  recipe: ResolvedRecipeState;
 }
 
-const Recipe: React.StatelessComponent<RecipeProps> = (props) =>
+const Recipe: React.StatelessComponent<RecipeProps> = ({ recipe }) =>
   <div>
-    <h2>{props.recipe.title}</h2>
-    <ul>
-      {
-        props.recipe.ingredients.map(ingredient => 
-          <li key={ingredient.ingredient.id}>
-            <Ingredient {...ingredient} />
-          </li>
-        )
-      }
-    </ul>
-    <ol>
-      {
-        props.recipe.steps.map((step, index) =>
-          <li key={index}>{step.text}</li>
-        )
-      }
-    </ol>
+    <h2>{recipe.title}</h2>
+    <IngredientList ingredients={recipe.ingredients} />
+    <RecipeSteps steps={recipe.steps} />
   </div>
 
 export default Recipe;
