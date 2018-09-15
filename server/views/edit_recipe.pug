@@ -1,0 +1,50 @@
+extends layout
+block content
+  datalist#ingredients-list
+    each ingredient in ingredients
+      option(value=ingredient)
+  div
+    input#recipe-id(type="hidden", value=recipe.id)
+    div.form-group
+      label(for="name") Recipe Name
+      input.form-control.form-control-lg#recipe-name(name="title", type="text", value=recipe.title)
+    div.form-group
+      label(for="description") Recipe Description
+      input.form-control#recipe-description(name="description", type="text", value=recipe.description)
+    div.form-group
+      label Ingredients
+      div#ingredients
+        each ingredient, index in recipe.ingredients
+          div.form-group
+            div.form-row
+              div.col-2
+                div.input-group
+                  div.input-group-prepend
+                    div.input-group-text.handle(style="cursor:move") ◆
+                  input.form-control.amount(value=ingredient.amount)
+              div.col-1
+                input.form-control.unit(value=ingredient.unit)
+              div.col-8
+                input.form-control.id(value=ingredient.id, list="ingredients-list")
+              div.col-1
+                button.btn.btn-danger(onclick="removeIngredient(this)") Remove
+      div.form-group
+        button.btn(onclick="addIngredient()") Add ingredient
+    div.form-group
+      label Steps
+      div#steps
+        each step, index in recipe.steps
+          div.form-group
+            div.form-row
+              div.col-11
+                div.input-group
+                  div.input-group-prepend
+                    div.input-group-text.handle(style="cursor:move") ◆
+                  textarea.form-control.text(rows=2) #{step.text}
+              div.col-1
+                button.btn.btn-danger(onClick="removeStep(this)") Remove
+      div.form-group
+        button.btn(onclick="addStep()") Add step
+
+    button.btn.btn-primary(onclick="updateRecipe()") Update Recipe
+  script(src="/lib/main.js")

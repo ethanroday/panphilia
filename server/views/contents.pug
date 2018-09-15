@@ -1,0 +1,11 @@
+extends layout
+block content
+  h1 Recipes
+  div
+    ul
+      each recipe in recipes
+        li
+          a(href=`/recipes/${recipe.id._}`) #{recipe.title._}
+  div
+    a(href="/recipes/create")
+      button.btn.btn-primary New Recipe

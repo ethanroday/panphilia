@@ -1,0 +1,21 @@
+extends layout
+block content
+  div
+    a(href="/recipes") &lt;- Back to recipes
+  br
+  h1 #{recipe.title}
+  h2 #{recipe.description}
+  br
+  div
+    h4 Ingredients
+    ul
+      each ingredient in recipe.ingredients
+        li.
+          #[i #{ingredient.amount} #{ingredient.unit}] #[span #{ingredient.id}]
+  div
+    h4 Steps
+    ol
+      each step in recipe.steps
+        li #{step.text}
+  a(href=`${recipe.id}/edit`)
+    button.btn Edit Recipe
