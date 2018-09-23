@@ -16,12 +16,18 @@ export interface RecipeStep {
   text: string;
 }
 
+export interface RecipeSource {
+  type: "url" | "text";
+  data: string;
+}
+
 export interface RecipeMetadata {
   title: string;
   yield?: Amount;
   activeTimeMinutes?: number;
   totalTimeMinutes?: number;
   notes?: string[];
+  source: RecipeSource;
 }
 
 export interface RecipeState {
