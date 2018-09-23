@@ -75,8 +75,14 @@ app.get("/recipes/create", (req, res, next) => {
     id: newId,
     title: "",
     description: "",
+    yieldAmount: "",
+    yieldUnit: "",
+    activeTimeMinutes: "",
+    totalTimeMinutes: "",
     ingredients: [] as any[],
-    steps: [] as any[]
+    steps: [] as any[],
+    notes: "",
+    source: ""
   }
   editRecipe(recipe, res);
 });

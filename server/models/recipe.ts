@@ -29,7 +29,7 @@ export interface Recipe {
 }
 
 const parseValue = (entity: TableStorageEntity, value: string, parse = false) =>
-  parse ? JSON.parse(entity[value]._) : entity[value]._
+  parse ? entity[value] && JSON.parse(entity[value]._) : entity[value] && entity[value]._
 
 export const parse = (recipeFromStorage: TableStorageEntity): Recipe => ({
   id: parseValue(recipeFromStorage, "RowKey"),
