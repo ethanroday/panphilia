@@ -24,8 +24,19 @@ const emptyIngredient = `
                 </div><input class="form-control amount" value="" /></div>
         </div>
         <div class="col-1"><input class="form-control unit" value="" /></div>
-        <div class="col-8"><input class="form-control id" value="" list="ingredients-list"/></div>
+        <div class="col-4"><input class="form-control id" value="" list="ingredients-list"/></div>
+        <div class="col-4"><input class="form-control note" value="" placeholder="Note"/></div>
         <div class="col-1"><button class="btn btn-danger" onclick="removeIngredient(this)">Remove</button></div>
+    </div>
+</div>
+`;
+
+const emptyNote = `
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-12">
+          <textarea class="form-control note" rows="2"></textarea>
+        </div>
     </div>
 </div>
 `;
@@ -60,7 +71,8 @@ function getIngredient(formGroup) {
   return {
     amount: formGroup.querySelector(".amount").value,
     unit: formGroup.querySelector(".unit").value,
-    id: formGroup.querySelector(".id").value
+    id: formGroup.querySelector(".id").value,
+    note: formGroup.querySelector(".note").value
   }
 }
 
@@ -85,8 +97,14 @@ function updateRecipe() {
     id: document.getElementById('recipe-id').value,
     title: document.getElementById('recipe-name').value,
     description: document.getElementById('recipe-description').value,
+    yieldAmount: document.getElementById('recipe-yield-amount').value,
+    yieldUnit: document.getElementById('recipe-yield-unit').value,
+    activeTimeMinutes: document.getElementById('recipe-active-time').value,
+    totalTimeMinutes: document.getElementById('recipe-total-time').value,
     ingredients: getIngredients(),
-    steps: getSteps()
+    steps: getSteps(),
+    notes: document.getElementById('notes').value,
+    source: document.getElementById('source').value
   }
   fetch(`/recipes/${recipe.id}`, {
     method: 'post',

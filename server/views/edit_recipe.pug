@@ -11,6 +11,18 @@ block content
     div.form-group
       label(for="description") Recipe Description
       input.form-control#recipe-description(name="description", type="text", value=recipe.description)
+    div.form-group.row
+      label.col-1.col-form-label(for="recipe-yield-amount") Yield:
+      div.col-1
+        input.form-control#recipe-yield-amount(name="yieldAmount", type="number", value=recipe.yieldAmount)
+      div.col-2
+        input.form-control#recipe-yield-unit(name="yieldUnit", type="text", value=recipe.yieldUnit placeholder="servings")
+      label.col-2.col-form-label(for="recipe-active-time") Active time (minutes):
+      div.col-1
+        input.form-control#recipe-active-time(name="activeTimeMinutes", type="number", value=recipe.activeTimeMinutes)
+      label.col-2.col-form-label(for="recipe-total-time") Total time (minutes):
+      div.col-1
+        input.form-control#recipe-total-time(name="totalTimeMinutes", type="number", value=recipe.totalTimeMinutes)
     div.form-group
       label Ingredients
       div#ingredients
@@ -24,8 +36,10 @@ block content
                   input.form-control.amount(value=ingredient.amount)
               div.col-1
                 input.form-control.unit(value=ingredient.unit)
-              div.col-8
+              div.col-4
                 input.form-control.id(value=ingredient.id, list="ingredients-list")
+              div.col-4
+                input.form-control.note(value=ingredient.note, placeholder="Note")
               div.col-1
                 button.btn.btn-danger(onclick="removeIngredient(this)") Remove
       div.form-group
@@ -45,6 +59,18 @@ block content
                 button.btn.btn-danger(onClick="removeStep(this)") Remove
       div.form-group
         button.btn(onclick="addStep()") Add step
+    div.form-group
+      label Notes
+      div.form-group
+        if (recipe.notes)
+          input.form-control#notes(value=recipe.notes[0])
+        else
+          input.form-control#notes(value="")
+    div.form-group
+      label Source
+      div.form-group
+        input.form-control#source(value=recipe.source)
+
 
     button.btn.btn-primary(onclick="updateRecipe()") Update Recipe
   script(src="/lib/main.js")

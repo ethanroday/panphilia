@@ -27,7 +27,7 @@ export interface RecipeMetadata {
   activeTimeMinutes?: number;
   totalTimeMinutes?: number;
   notes?: string[];
-  source: RecipeSource;
+  source?: RecipeSource;
 }
 
 export interface RecipeState {

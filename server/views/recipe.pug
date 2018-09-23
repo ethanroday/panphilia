@@ -5,17 +5,36 @@ block content
   br
   h1 #{recipe.title}
   h2 #{recipe.description}
+  if (recipe.yieldAmount)
+    div #{recipe.yieldAmount} #{recipe.yieldUnit}
+  if (recipe.activeTimeMinutes)
+    div Active time: #{recipe.activeTimeMinutes} minutes
+  if (recipe.totalTimeMinutes)
+    div Total time: #{recipe.totalTimeMinutes} minutes
   br
   div
     h4 Ingredients
     ul
       each ingredient in recipe.ingredients
         li.
-          #[i #{ingredient.amount} #{ingredient.unit}] #[span #{ingredient.id}]
+          #[i #{ingredient.amount} #{ingredient.unit}] #[span #{ingredient.id}] #[i(style="color: gray") #{ingredient.note}]
   div
     h4 Steps
     ol
       each step in recipe.steps
         li #{step.text}
+  div
+    h4 Notes
+    if (recipe.source || recipe.notes)
+      if (recipe.source)
+        div Source: #{recipe.source}
+      if (recipe.notes)
+        div #{recipe.notes}
+    else
+      div
+        i None
+
+  br
+
   a(href=`${recipe.id}/edit`)
     button.btn Edit Recipe
