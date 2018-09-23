@@ -41,9 +41,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set("views", path.join(__dirname, "../src/views"));
+app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
-app.use("/lib", express.static(path.join(__dirname, "../src/lib")))
+app.use("/lib", express.static(path.join(__dirname, "../lib")))
 
 app.get("/recipes", (req, res, next) => {
   const query = new TableQuery()

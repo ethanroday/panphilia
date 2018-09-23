@@ -23,7 +23,8 @@
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "server:watch": "tsc --project tsconfig.server.json -w",
-    "server:start": "node server/dist/index.js"
+    "server:start": "node server/dist/index.js",
+    "server:build": "tsc --project tsconfig.server.json && node server/dist/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
